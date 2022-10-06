@@ -5,21 +5,6 @@ IKEv2 Daemon managed via the Versatile IKE Control Interface (VICI).
 
 [STRONGSWAN]: https://www.strongswan.org
 
-## Pull Docker Images
-
-```
-$ docker pull strongx509/tnc-client
-$ docker pull strongX509/tnc-server
-```
-
-## Build Docker Image
-
-Alternatively the docker image can be built from scratch in the `tnc` directory with
-```console
-$ docker build -f Dockerfile.client -t strongx509/tnc-client .
-$ docker build -f Dockerfile.server -t strongx509/tnc-server .
-
-```
 The build rules are defined in [Dockerfile.client](Dockerfile.client) and
 [Dockerfile.server](Dockerfile.server), respectively.
 
