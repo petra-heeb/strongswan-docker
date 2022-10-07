@@ -47,7 +47,7 @@ In an additional console window we open a `bash` shell to start and manage the s
 server$ docker exec -ti tnc-server /bin/bash
 server# ./charon &
 # ./charon &
-00[DMN] Starting IKE charon daemon (strongSwan 5.9.5, Linux 5.13.0-35-generic, x86_64)
+00[DMN] Starting IKE charon daemon (strongSwan 5.9.8, Linux 5.15.0-48-generic, x86_64)
 00[TNC] TNC recommendation policy is 'default'
 00[TNC] loading IMVs from '/etc/tnc_config'
 00[TNC] added IETF attributes
@@ -94,7 +94,7 @@ And in a third console window we open a `bash`shell to start and manage the stro
 ```console
 client$ docker exec -ti tnc-client /bin/bash
 client# ./charon &
-00[DMN] Starting IKE charon daemon (strongSwan 5.9.5, Linux 5.13.0-35-generic, x86_64)
+00[DMN] Starting IKE charon daemon (strongSwan 5.9.8, Linux 5.15.0-48-generic, x86_64)
 00[TNC] loading IMCs from '/etc/tnc_config'
 00[TNC] added IETF attributes
 00[TNC] added ITA-HSR attributes
@@ -105,7 +105,7 @@ client# ./charon &
 00[IMC] processing "/etc/os-release" file
 00[IMC] operating system type is 'Ubuntu'
 00[IMC] operating system name is 'Ubuntu'
-00[IMC] operating system version is '20.04 x86_64'
+00[IMC] operating system version is '22.04 x86_64'
 00[TNC] IMC 1 supports 1 message type: 'IETF/Operating System' 0x000000/0x00000001
 00[TNC] IMC 1 "OS" loaded from '/usr/lib/ipsec/imcvs/imc-os.so'
 00[IMC] IMC 2 "Scanner" initialized
