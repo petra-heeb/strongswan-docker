@@ -5,23 +5,46 @@ IKEv2 Daemon managed via the Versatile IKE Control Interface (VICI).
 
 [STRONGSWAN]: https://www.strongswan.org
 
-## Pull Docker Images
-
-```
-$ docker pull strongx509/tnc-client
-$ docker pull strongX509/tnc-server
-```
-
-## Build Docker Image
-
-Alternatively the docker image can be built from scratch in the `tnc` directory with
-```console
-$ docker build -f Dockerfile.client -t strongx509/tnc-client .
-$ docker build -f Dockerfile.server -t strongx509/tnc-server .
-
-```
 The build rules are defined in [Dockerfile.client](Dockerfile.client) and
 [Dockerfile.server](Dockerfile.server), respectively.
+
+## Fast TNC docker lab setup
+1. clone git repo
+2. create needed folders in cloned git repo in the tnc folder
+```
+$ sh scripts/gen_dirs.sh
+```
+3. Create lab topology in the cloned git repo in the tnc folder
+```
+$ sudo docker-compose up --build
+```
+4. Access both docker containers (Server and Client):
+```
+$ docker exec -ti tnc-server /bin/bash
+$ docker exec -ti tnc-client /bin/bash
+```
+5. Start charon service on server and client docker container
+```
+$ ./charon &
+```
+6. Start tnc connection on client docker container and do not log the output because of duplication
+```
+$ swanctl --initiate --child tnc > /dev/null
+```
+7. Start web server on server docker container to set tnc rules:
+```
+$ /var/www/tnc/manage.py migrate --database meta
+$ chmod g+w /var/www/tnc/django.db
+$ /var/www/tnc/manage.py setpassword strongSwan strongSwan
+$ /var/www/tnc/manage.py collectstatic --noinput
+$ service apache2 start
+```
+8. Open your browser and enter `192.168.0.2`
+9. Login with "Read+Write" access and the password "strongSwan"
+10. Open tcp port on client to make it unhealthy
+```
+nc -l -p 80
+```
 
 ## Create Docker Containers and Local Networks
 
